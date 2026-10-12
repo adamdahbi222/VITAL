@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VITAL - Connexion</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green: #4fc9a8;
+    --green-dark: #2f9c81;
+    --blue: #0d6efd;
+    --blue-dark: #0b57cf;
+    --text-dark: #1a2b28;
+    --text-muted: #5c6d69;
+  }
+  *{ box-sizing: border-box; margin: 0; padding: 0; }
+  body{
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #eafbf5 0%, #eaf2ff 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+  .card{
+    display: flex;
+    width: 100%;
+    max-width: 960px;
+    min-height: 600px;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px -20px rgba(13, 110, 253, 0.25);
+  }
+  .panel{
+    flex: 1 1 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 56px 48px;
+  }
+  .panel-form{ background: #fff; }
+  .panel-info{
+    background: linear-gradient(160deg, var(--green) 0%, var(--blue) 100%);
+    color: #fff;
+    justify-content: space-between;
+    position: relative;
+  }
+  .logo-row{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+  .logo-icon img{
+    width: 270px;
+    height: 150px;
+    margin-left: -70px;
+  }
+  .logo-text{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    margin-top: -39px;
+    margin-left: -90px;
+    font-size: 32px;
+    letter-spacing: 1px;
+    
+  }
+  .logo-text span{ color: #0b49ac; }
+  .tagline{
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-top: -44px;
+    margin-bottom: 40px;
+    margin-left: 52px;
+  }
+  h1{
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+  }
+  .subtitle{
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 32px;
+  }
+  .field{ margin-bottom: 20px; }
+  .field label{
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+  }
+  .field input{
+    width: 100%;
+    height: 46px;
+    padding: 0 16px;
+    border-radius: 10px;
+    border: 1.5px solid #e1e7e5;
+    background: #f8faf9;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--text-dark);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .field input::placeholder{ color: #a7b3b0; }
+  .field input:focus{
+    outline: none;
+    border-color: var(--green-dark);
+    background: #fff;
+  }
+  .row-end{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 28px;
+  }
+  .row-end a{
+    font-size: 13px;
+    color: var(--blue);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .row-end a:hover{ text-decoration: underline; }
+  .btn-primary{
+    width: 100%;
+    height: 48px;
+    border: none;
+    border-radius: 10px;
+    background: var(--blue);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .btn-primary:hover{ background: var(--blue-dark); }
+  .btn-primary:active{ transform: scale(0.98); }
+  .signup-hint{
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 24px;
+  }
+  .signup-hint a{ color: var(--blue); text-decoration: none; font-weight: 500; }
+  .panel-info h2{
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .panel-info .lead{
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    line-height: 1.5;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+  .panel-info p{
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.9);
+  }
+  .feature-list{ list-style: none; margin-top: 24px; }
+  .feature-list li{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    margin-bottom: 10px;
+    color: rgba(255,255,255,0.95);
+  }
+  .feature-list li::before{
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #fff;
+    flex-shrink: 0;
+  }
+  @media (max-width: 720px){
+    .card{ flex-direction: column-reverse; min-height: unset; }
+    .panel{ padding: 36px 28px; }
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="panel panel-form">
+      <div class="logo-row">
+        <div class="logo-icon"><img src="sihati.png" alt="image"></div>
+        <div class="logo-text">VIT<span>AL</span></div>
+      </div>
+      <div class="tagline">Espace Patient</div>
+
+      <h1>Bon retour</h1>
+      <p class="subtitle">Connectez-vous pour gérer vos rendez-vous</p>
+
+      <div class="field">
+        <label for="email">Adresse email</label>
+        <input id="email" type="email" placeholder="vous@exemple.com">
+      </div>
+      <div class="field">
+        <label for="password">Mot de passe</label>
+        <input id="password" type="password" placeholder="••••••••">
+      </div>
+      <div class="row-end">
+        <a href="#">Mot de passe oublié ?</a>
+      </div>
+      <button class="btn-primary">Se connecter</button>
+      <div class="signup-hint">Pas encore de compte ? <a href="#">Créer un compte</a></div>
+    </div>
+
+    <div class="panel panel-info">
+      <h2>Vital — Santé en Ligne</h2>
+      <div>
+        <div class="lead">Votre santé, suivie et organisée en un seul endroit.</div>
+        <p>Rendez-vous, historique et rappels, où que vous soyez au Maroc.</p>
+        <ul class="feature-list">
+          <li>Prise de rendez-vous en quelques clics</li>
+          <li>Historique médical centralisé</li>
+          <li>Rappels automatiques par SMS/email</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

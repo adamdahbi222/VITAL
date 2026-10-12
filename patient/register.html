@@ -1,0 +1,199 @@
+<?php
+include "config.php"; 
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $first_name = trim($_POST["f_name"]);
+    $last_name  = trim($_POST["l_name"]);
+    $email      = trim($_POST["email"]);
+    $password   = $_POST["password"];
+    $confirm    = $_POST["c_password"];
+
+   
+    if ($password != $confirm) {
+        die("Les mots de passe ne correspondent pas.");
+    }
+
+    
+    $check = $vital_db->prepare("SELECT id FROM patient WHERE email = ?");
+    $check->bind_param("s", $email);
+    $check->execute();
+    $result = $check->get_result();
+
+    if ($result->num_rows > 0) {
+        die("Cet email est déjà utilisé.");
+    }
+
+    
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+   
+    $sql = "INSERT INTO patient (first_name, last_name, email, password)
+            VALUES (?, ?, ?, ?)";
+
+    $stmt = $vital_db->prepare($sql);
+    $stmt->bind_param("ssss", $first_name, $last_name, $email, $hashedPassword);
+
+    if ($stmt->execute()) {
+        header("Location: login.php?success=1");
+        exit();
+    } else {
+        echo "Erreur : " . $stmt->error;
+    }
+
+    $stmt->close();
+    $check->close();
+    $vital_db->close();
+}
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/creat_acc.css">
+    <title>Patient</title>
+</head>
+<body>
+
+<div class="login_gental">
+
+  <div class="image_login">
+    <img src="DoctorRegistration.png" alt="image">
+    <h1>VIT<span>AL</span> Your Health, <br> Connected</h1>
+  </div>
+
+  <div class="Login">
+    <div class="Login1">
+      <img src="sihati.png" alt="image">
+      <h1>VIT<span>AL</span></h1>
+
+      <form action="register_process.php" method="POST">
+        <div class="field-wrapper">
+          <input type="text" name="f_name" placeholder="First Name" required>
+        </div>
+        <div class="field-wrapper">
+          <input type="text" name="l_name" placeholder="Last Name" required>
+        </div>
+        <div class="field-wrapper">
+          <input type="email" name="email" id="Email" placeholder="Email" required>
+        </div>
+        <div class="field-wrapper">
+          <input type="password" name="password" placeholder="Password" required>
+        </div>
+        <div class="field-wrapper">
+          <input type="password" name="c_password" placeholder="Confirm password" required>
+        </div>
+
+        <div class="send">
+          <input type="submit" value="Register">
+        </div>
+      </form>
+
+      <br>
+
+
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
+<style>
+    .send {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.send input {
+    width: 210px;
+    border-radius: 10px;
+    height: 40px;
+    border: 1px solid #0a29c5;
+    background-color: #52c5a6;
+    color: #fff;
+    cursor: pointer;
+}
+
+.field-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 14px;
+}
+
+.field-wrapper input {
+    width: 270px;
+    height: 40px;
+    border-radius: 20px;
+    border: 1px solid #52c5a6;
+    padding-left: 16px;
+}
+
+.field-wrapper input::placeholder {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.Login {
+    background: linear-gradient(135deg, #779bc5 0%, #bbe3ff 50%, #c9faed 100%);
+    width: 500px;
+    height: 490px;
+    margin-top: 220px;
+    border-radius: 20px;
+    margin-right: 30px;
+    margin-left: 230px;
+}
+
+.Login1 span {
+    color: #52c5a6;
+}
+
+.Login1 img {
+    width: 210px;
+    margin-top: 30px;
+    margin-left: 50px;
+}
+
+.Login1 h1 {
+    display: flex;
+    justify-content: center;
+    margin-top: -93px;
+    font-size: 38px;
+    margin-left: 30px;
+}
+
+.login_gental {
+    background-color: #c9faed;
+    width: 1200px;
+    display: flex;
+    justify-content: center;
+    margin-left: 220px;
+    height: 800px;
+    margin-top: 70px;
+    border-radius: 30px;
+}
+
+.image_login img {
+    width: 400px;
+    display: flex;
+    justify-self: center;
+    margin-top: 190px;
+    margin-left: -390px;
+}
+
+.image_login h1 {
+    margin-left: -310px;
+    color: #132d4a;
+}
+
+.image_login span {
+    color: #52c5a6;
+}
+
+.image_login {
+    margin-left: 400px;
+}
+</style>

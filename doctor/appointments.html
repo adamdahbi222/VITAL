@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+   <div class="menu_principal">
+   <div class="logo">
+    <h1>VIT<span>AL</span></h1>
+<img src="../assets/images/hospitals/sihati.png" alt="img">
+    </div>
+  <div class="menu">
+      <ul>
+       <a href="../Vital.html">Accueil</a>
+         <a href="../doctor/doctors.html">Médecins</a>
+        <a href="../patient/specialties.html">Spécialités</a>
+         <a href="../pages/hospitals.php">Hôpitaux</a>
+         <a href="../doctor/appointments.html">Prendre rendez-vous</a>
+        <a href="../about.html">À propos</a>
+        
+        <a href="../contact.html">Contact</a>
+        
+      </ul></div>
+
+         
+    
+   
+  <div class="auth">
+        <a href="patient/Login.html" class="patient-btn">
+            Espace Patient
+        </a>
+
+        <a href="doctor/login.html" class="doctor-btn">
+            Espace Médecin
+        </a>
+    </div>
+
+    
+  </div>
+   <div class="presentation_srv">
+  <div class="presentation_srv1">
+    
+   
+  </div>
+
+  </div>
+  <div class="search-container-gerl">
+<div class="search-container">
+
+    <div class="search-item">
+        <i class="bi bi-search"></i>
+
+        <div>
+            <label> <svg xmlns="http://www.w3.org/2000/svg" id="search"  width="26" height="26" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+</svg>  Spécialité ou Médecin</label>
+            <input type="text" placeholder="Généraliste, Cardiologue">
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="search-item">
+        <i class="bi bi-geo-alt"></i>
+
+        <div>
+          <label>  <svg xmlns="http://www.w3.org/2000/svg" id="ville" width="26" height="26" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+  <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
+</svg>  Ville ou Code Postal</label>
+            <input type="text" placeholder="Casablanca">
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="search-item">
+        <i class="bi bi-calendar3"></i>
+
+        <div>
+            <label> <svg xmlns="http://www.w3.org/2000/svg" id="date"  width="26" height="26" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
+</svg> Date</label>
+            <input type="date">
+        </div>
+    </div>
+
+  
+
+    </div>
+    
+  <button class="search-btn">
+        Rechercher un médecin
+    </button>
+
+</div>
+</div>
+
+  <div class="step1">
+    <h1>1</h1><p>Etape 1 :  </p>
+
+
+
+<div class="tre"></div>
+   <h1>2</h1><p>Etape 2 :  calendar </p>
+  <div class="date1">
+<h3> <span id="dateHolder" ></h3>
+  </div>
+   <div class="tres"></div>
+     </div>
+   
+	<div class="step3">
+           <h1>3</h1><p>Etape 3 : Confirmation Froms  </p>
+    </div>
+  <form class="fromulair">
+
+    <div class="field">
+        <label>Nom</label>
+        <input type="text" placeholder="Nom">
+    </div>
+
+    <div class="field">
+        <label>Prénom</label>
+        <input type="text" placeholder="Prénom">
+    </div>
+
+    <div class="field">
+        <label>Email</label>
+        <input type="email" placeholder="Email">
+    </div>
+
+    <div class="field">
+        <label>Téléphone</label>
+        <input type="tel" placeholder="Téléphone">
+    </div>
+
+    <div class="field full">
+        <label>Motif de consultation</label>
+        <textarea placeholder="Décrivez votre demande..."></textarea>
+    </div>
+
+    <button type="submit">Confirmer le rendez-vous</button>
+
+</form>
+	<table id="calWrapper">
+	</table>
+	
+	<script type="text/javascript">
+		(function(){
+			var today = new Date();
+			var month,day,year,firstDay;
+			month = today.getMonth();
+			day = today.getDate();
+			year = today.getFullYear();
+			
+			firstDay = new Date(year,month,1);
+			
+			var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+			var days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+			
+			function displayDate() {
+				var holder = document.getElementById("dateHolder");
+				holder.innerText = months[month] + ' ' + year;
+			}
+			
+			function createDayHeaders() {
+				var wrapper = document.getElementById("calWrapper");
+				var row = document.createElement("tr");
+				for(var i = 0; i<days.length; i++) {
+					var el = document.createElement("th");
+					el.setAttribute("class","dayHeader");
+					el.innerText = days[i];
+					row.appendChild(el);
+				}
+				wrapper.appendChild(row);
+			}
+			
+			function createDayCells() {
+				var dayOne = firstDay.getDay();
+				var iDay = 0;
+				
+				var wrapper = document.getElementById("calWrapper");
+				var lastDay = new Date(year,month+1,0).getDate();
+				
+				while(iDay < lastDay) {
+					var row = document.createElement("tr");
+					for(var i = 0; i<days.length; i++) {
+						var el = document.createElement("td");
+
+						if(dayOne === i || iDay > 0) {
+							if(day === iDay)
+								el.setAttribute("class", "dayCell today");
+							else
+								el.setAttribute("class", "dayCell");
+								
+							if(iDay < lastDay)
+								iDay++;
+							else
+								break;
+							el.innerText = iDay;
+						}
+						row.appendChild(el);
+					}
+					wrapper.appendChild(row);
+				}
+			}
+			
+			displayDate(today);
+			createDayHeaders();
+			createDayCells();
+		})();
+	</script>
+
+    <style>
+.logo img{
+
+  width: 230px;
+   margin-top: -90px;
+   margin-left: -50px;
+}
+
+.fromulair{
+    width: 900px;
+    margin: 30px auto;
+    padding: 30px;
+
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 20px;
+
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.15);
+}
+
+.field{
+    display: flex;
+    flex-direction: column;
+}
+
+.field label{
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.field input,
+.field textarea{
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.field textarea{
+    height: 120px;
+    resize: none;
+}
+
+.full{
+    grid-column: 1 / 3;
+}
+
+button{
+    grid-column: 1 / 3;
+    width: 220px;
+    margin: auto;
+    padding: 14px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #16c79a;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover{
+    background: #12a37d;
+}
+			body { width: 320; height: 480; margin: 20, auto; }
+			#calWrapper { width: 70% ; margin: 0 5; border: 1px solid #ccc; margin-left: 300px; margin-top: -1050px; height: 400px;}
+			.dayCell { width: 40px; height: 40px; font-size: 11px; vertical-align: top; text-align: right; background-color: aliceblue;}
+			.dayHeader { 
+				width: 40px;
+				height: 20px; 
+				background-color: #007bff;
+               
+			}
+            .date1{
+                text-align: center;
+                margin-left: -90px;
+                font-size: 20px;
+
+               
+            }
+          .step3{
+               
+        margin-left: 210px;
+          }  
+	.step3 h1{
+            background-color: #007bff;
+            width: 15px;
+            border-radius: 50%;
+            padding: 10px 20px;
+            color: #ffffff;  
+    }
+     .step3 p{
+            margin-left: 96px;
+            margin-top: -67px;
+            font-size: 29px;
+            font-weight: 900;
+          }       
+           
+			.today { border: 2px solid blue;}
+        .tre {
+    width: 3px;
+    height: 49px;
+    margin-top: 150px;
+    background-color: #007bff;
+    margin-left: 27px
+}
+   .tres {
+    width: 3px;
+    height: 500px;
+    margin-top: -50px;
+    background-color: #007bff;
+    margin-left: 30px
+    
+}
+        .step1 {
+        margin-top: -210px;
+        margin-left: 210px;
+
+        }
+          .step1 p{
+            margin-left: 96px;
+            margin-top: -67px;
+            font-size: 29px;
+            font-weight: 900;
+          }
+          .step1 h1{
+            background-color: #007bff;
+           width: 15px;
+border-radius: 50%;
+            padding: 10px 20px;
+            color: #ffffff;
+          }
+        .logo img{
+    width: 230px;
+   margin-top: -90px;
+   margin-left: -50px;
+}
+.logo h1{
+    margin-left: 120px;
+    margin-top: 40px;
+}
+.logo h1 span{
+    color:#52c5a6;
+}
+.menu ul {
+    display: flex;
+   justify-content: center;
+   gap: 50px;
+margin-top: -90px;
+font-size: 19px;
+margin-left: -120px;
+
+}
+.menu a{
+    text-decoration: none;
+   color: black;
+
+    
+}
+.menu a :hover{
+    background-color: rgb(241, 240, 240);
+
+}
+.auth{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: 1330px;
+    margin-top:-50px;
+}
+
+.auth a{
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+/* Bouton Patient */
+.patient-btn{
+    background: #52c5a6;
+    color: white;
+}
+
+.patient-btn:hover{
+    background: #218838;
+}
+
+/* Bouton Médecin */
+.doctor-btn{
+    background: #007bff;
+    color: white;
+}
+
+.doctor-btn:hover{
+    background: #0056b3;
+}
+.presentation_srv1{
+    margin-top: 210px;
+}
+
+.presentation_srv1 img{ 
+  border-top-left-radius: 190px;
+  border-bottom-left-radius: 70px;
+  margin-left: 907px;
+  margin-top: -1px;
+  height: 500px;
+
+
+}
+
+.presentation_srv1 h1{
+   
+  font-size: 25px;
+  margin-top: -290px;
+ color: #132d4a;
+ margin-left: 20px;
+ font-size: 40px;
+ 
+ 
+
+}
+
+.presentation_srv1 h4{
+    margin-left: 24px;
+    font-size: 20px;
+    color: rgb(104, 104, 104);
+}
+.search-container-gerl{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background: #007bff;
+    height: 110px;
+    width: 1200px;
+    margin-left: 200px;
+    border-radius: 20px;
+    padding: 0 30px;
+}
+
+.search-container{
+    display: flex;
+    align-items: center;       
+    justify-content: space-between; 
+    background-color: #ffffff;
+    
+    height: 70px;
+    width: 900px;
+    border-radius: 20px;
+    padding: 10px 20px;
+}
+
+.search-item{
+    display: flex;
+    align-items: center;
+    padding: 0 25px;
+}
+
+.search-item i{
+    font-size: 28px;
+    color: #666;
+    margin-right: 15px;
+}
+
+.search-item label{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.search-item input{
+    border: none;
+    outline: none;
+    font-size: 16px;
+    width: 100%;
+}
+
+.divider{
+    width: 1px;
+    height: 90px;
+    background: #ddd;
+}
+
+.search-btn{
+    width: 240px;
+    height: 80px;
+    background-color: #52c5a6;
+    color: #ffffff;
+    border-radius: 20px;
+    border: 1px solid #52c5a6;
+    font-weight: 600;
+    cursor: pointer;
+    flex-shrink: 0;   /* empêche le bouton de rétrécir si l'espace manque */
+}
+
+#date{
+    align-self: center;
+}
+.zon_med h1{
+    font-size: 20px;
+    margin-left: 90px;
+    margin-top: 20px;
+
+}
+.specialties h1{
+  color: #132d4a;
+  display: flex;
+  justify-content: center;
+  margin-top: 80px;
+}
+
+.Stéthoscope{
+    background-color: #007bff;
+     width: 90px;
+      border-radius: 100%;
+      height: 90px;
+}
+
+.specialties {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.specialties h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 50px;
+}
+
+.specialties-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+
+.specialty-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 140px;
+}
+
+.icon-circle {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.specialty-item svg {
+    width: 32px;
+    height: 32px;
+}
+
+.specialty-item p {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0;
+}
+    </style>
+</body>
+</html>

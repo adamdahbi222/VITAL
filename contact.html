@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="menu_principal">
+   <div class="logo">
+    <h1>VIT<span>AL</span></h1>
+<img src="patient/sihati.png" alt="img">
+    </div>
+  <div class="menu">
+      <ul>
+         <a href="index.html">Accueil</a>
+         <a href="pages/doctors.php">Médecins</a>
+        <a href="pages/specialties.php">Spécialités</a>
+         <a href="pages/hospitals.php">Hôpitaux</a>
+         <a href="pages/appointments.php">Prendre rendez-vous</a>
+        <a href="pages/about.php">À propos</a>
+        
+        <a href="pages/contact.php">Contact</a>
+        
+      </ul></div>
+
+         
+    
+   
+  <div class="auth">
+        <a href="patient/login.php" class="patient-btn">
+            Espace Patient
+        </a>
+
+        <a href="auth/doctor-login.php" class="doctor-btn">
+            Espace Médecin
+        </a>
+    </div>
+
+
+    <div class="note">
+        <h1>Notre Mission</h1>
+        <p>Notre mission est de connecter les patients et les professionnels  de santé grâce <br>à une plateforme simple, rapide et sécurisée. Nous facilitons la prise <br>  de rendez-vous en ligne afin   d'améliorer  l'accès<br> aux soins et l'expérience des utilisateurs.</p>
+ <img src="./image4-Cropped-900x510.jpg" alt="image">
+    </div>
+
+<style>
+    .note img{
+        border-top-left-radius: 190px;
+  border-bottom-left-radius: 70px;
+  margin-left: 807px;
+  margin-top: -351px;
+  height: 400px;
+        
+    }
+    .note{
+        
+        margin-left: 190px;
+        margin-top: 240px;
+    }
+.note p{
+    font-weight: bold;
+    font-size: 20px;
+    color: gray;
+    
+
+}
+.note h1{
+      font-size: 40px;
+}
+
+    .logo img{
+    width: 230px;
+   margin-top: -90px;
+   margin-left: -50px;
+}
+.logo h1{
+    margin-left: 120px;
+    margin-top: 40px;
+}
+.logo h1 span{
+    color:#52c5a6;
+}
+.menu ul {
+    display: flex;
+   justify-content: center;
+   gap: 50px;
+margin-top: -90px;
+font-size: 19px;
+margin-left: -120px;
+
+}
+.menu a{
+    text-decoration: none;
+   color: black;
+
+    
+}
+.menu a :hover{
+    background-color: rgb(241, 240, 240);
+
+}
+.auth{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: 1330px;
+    margin-top:-50px;
+}
+
+.auth a{
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+/* Bouton Patient */
+.patient-btn{
+    background: #52c5a6;
+    color: white;
+}
+
+.patient-btn:hover{
+    background: #218838;
+}
+
+/* Bouton Médecin */
+.doctor-btn{
+    background: #007bff;
+    color: white;
+}
+
+.doctor-btn:hover{
+    background: #0056b3;
+}
+</style>
+</body>
+</html>
